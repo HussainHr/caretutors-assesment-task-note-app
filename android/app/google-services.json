@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "344937998842",
+    "project_id": "caretutors-note-app",
+    "storage_bucket": "caretutors-note-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:344937998842:android:d6f0c0763e1984edd9dc43",
+        "android_client_info": {
+          "package_name": "com.example.caretutors_assignment_task_note_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJ8ZJsSn3hDhKem48ke_gX2ugjWHVqgNA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
