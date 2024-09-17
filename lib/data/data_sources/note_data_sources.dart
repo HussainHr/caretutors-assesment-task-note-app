@@ -24,8 +24,8 @@ class NoteDataSources {
               final data = doc.data();
               return Note(
                   id: doc.id,
-                  title: data['title'],
-                  noteDescription: data['noteDescription']);
+                  title: data['title']??"",
+                  noteDescription: data['noteDescription']??"");
             }).toList());
   }
 
