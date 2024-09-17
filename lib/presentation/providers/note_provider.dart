@@ -20,4 +20,9 @@ final addNoteProvider = FutureProvider.family<void,Map<String,String>>((ref, dat
   return ref.read(noteRepositoryProvider).addNotes(userId, title, noteDescription);
 });
 
-// final deleteNoteProvider = FutureProvider(_createFn)
+
+final deleteNoteProvider = FutureProvider.family<void, Map<String, String>>((ref, data) {
+  final userId = data['userId']!;
+  final noteId = data['noteId']!;
+  return ref.read(noteRepositoryProvider).deleteNotes(userId, noteId);
+});

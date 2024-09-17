@@ -15,16 +15,16 @@ void main() async {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      title: 'Note Application Caretutors task',
+      debugShowCheckedModeBanner: false,
+      title: 'Firebase Note Application Caretutors task',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-     routerConfig: router,
+      routerConfig: router,
     );
   }
 }

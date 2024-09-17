@@ -50,7 +50,7 @@ class SignUpScreen extends HookConsumerWidget {
               child: Text('Sign Up'),
             ),
             TextButton(
-              onPressed: () { context.go('/');},
+              onPressed: () { context.go('/login');},
               child: Text('Back to Login'),
             ),
           ],

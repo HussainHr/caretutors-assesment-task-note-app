@@ -5,7 +5,7 @@ class GetNotes{
   NoteRepositories repositories;
 
   GetNotes(this.repositories);
-  
+
   Stream<List<Note>> call(userId){
     return repositories.getAllNotes(userId);
   }

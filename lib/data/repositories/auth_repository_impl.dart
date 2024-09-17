@@ -19,7 +19,14 @@ class AuthRepositoryImpl implements AuthRepositories {
 
       return userCredential.user;
     } on FirebaseAuthException catch (e) {
-      throw Exception('Failed to login ${e.message}');
+      switch (e.code) {
+        case 'user-not-found':
+          throw Exception('No user found for that email.');
+        case 'wrong-password':
+          throw Exception('Wrong password provided.');
+        default:
+          throw Exception('Failed to login: ${e.message}');
+      }
     }
   }
 
@@ -35,7 +42,14 @@ class AuthRepositoryImpl implements AuthRepositories {
       await userCredential.user?.updateDisplayName(userName);
       return userCredential.user;
     } on FirebaseAuthException catch (e) {
-      throw Exception("Failed to sign up ${e.message}");
+      switch (e.code) {
+        case 'email-already-in-use':
+          throw Exception('The account already exists for that email.');
+        case 'weak-password':
+          throw Exception('The password provided is too weak.');
+        default:
+          throw Exception("Failed to sign up: ${e.message}");
+      }
     }
   }
 

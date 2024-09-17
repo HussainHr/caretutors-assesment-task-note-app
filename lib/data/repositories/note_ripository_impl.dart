@@ -12,12 +12,7 @@ class NoteRipositoryImpl implements NoteRepositories{
     return await _dataSources.addNote(userId, title, noteDescription);
     
   }
-
-  @override
-  Future<void> deleteNotes(String userId, String noteId,String title, String noteDescription ) async{
-    return await _dataSources.deleteNote(userId, noteId, title, noteDescription);
-  }
- 
+  
   @override
   Stream<List<Note>> getAllNotes(String userId) {
     return _dataSources.getAllNotes(userId);
@@ -27,5 +22,10 @@ class NoteRipositoryImpl implements NoteRepositories{
   Future<void> updateNote(String userId, String noteId, String title, String noteDescription)async {
     return await _dataSources.updateNote(userId, noteId, title, noteDescription);
   }
-  
+
+  @override
+  Future<void> deleteNotes(String userId, String noteId) async{
+    return await _dataSources.deleteNote(userId, noteId);
+  }
+
 }

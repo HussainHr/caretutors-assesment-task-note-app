@@ -3,13 +3,15 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
 import '../../providers/note_provider.dart';
+
 class HomeScreen extends HookConsumerWidget {
+  const HomeScreen({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final user = FirebaseAuth.instance.currentUser;
-    final notes = ref.watch(getAllNotesProvider(user!.uid));
+    final notes = ref.watch(getAllNotesProvider(user?.uid ?? ''));
 
     return Scaffold(
       appBar: AppBar(
@@ -19,7 +21,18 @@ class HomeScreen extends HookConsumerWidget {
             icon: Icon(Icons.logout),
             onPressed: () {
               ref.read(logOutProvider.future).then((_) {
-                context.go('/');
+                ref.invalidate(getAllNotesProvider);
+                ref.invalidate(authRepositoryProvider);
+                FirebaseAuth.instance.authStateChanges().listen((User? user) {
+                  if (user == null) {
+                    context.go('/login');
+                  }
+                });
+              }).catchError((error) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                      content: Text('Error logging out: ${error.toString()}')),
+                );
               });
             },
           ),
@@ -44,15 +57,15 @@ class HomeScreen extends HookConsumerWidget {
                         context.push('/add-note', extra: note);
                       },
                     ),
-                    // IconButton(
-                    //   icon: Icon(Icons.delete),
-                    //   onPressed: () {
-                    //     ref.read(noteRepositoryProvider).deleteNote(
-                    //       user.uid,
-                    //       note.id,
-                    //     );
-                    //   },
-                    // ),
+                    IconButton(
+                      icon: Icon(Icons.delete),
+                      onPressed: () {
+                        ref.read(noteRepositoryProvider).deleteNotes(
+                              user!.uid,
+                              note.id,
+                            );
+                      },
+                    ),
                   ],
                 ),
               );

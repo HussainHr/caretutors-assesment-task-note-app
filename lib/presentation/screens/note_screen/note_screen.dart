@@ -3,14 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
 import '../../../domain/entities/note.dart';
 import '../../providers/note_provider.dart';
 
 class AddNoteScreen extends HookConsumerWidget {
   final Note? note;
 
-  const AddNoteScreen({this.note, Key? key}) : super(key: key);
+  const AddNoteScreen({this.note, super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final titleController = useTextEditingController(text: note?.title ??"");

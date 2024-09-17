@@ -1,4 +1,5 @@
 import 'package:caretutors_assignment_task_note_app/presentation/providers/auth_provider.dart';
+import 'package:caretutors_assignment_task_note_app/presentation/providers/note_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
@@ -37,6 +38,7 @@ class LoginScreen extends HookConsumerWidget {
 
                 ref.read(loginProvider(credential).future).then((user) {
                   if (user != null) {
+                    ref.refresh(getAllNotesProvider(user.uid));
                     context.go("/home");
                   }
                 }).catchError((error) {
@@ -47,10 +49,8 @@ class LoginScreen extends HookConsumerWidget {
               child: Text('Login'),
             ),
 
-            TextButton(
-              onPressed: () { context.go('/signup');},
-              child: Text('Sign Up'),
-            ),
+            ElevatedButton(onPressed: (){context.go('/signup');}, child: Text('Sign Up'),)
+           
           ],
         ),
       ),

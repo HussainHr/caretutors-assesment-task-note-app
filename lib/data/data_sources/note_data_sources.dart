@@ -29,8 +29,7 @@ class NoteDataSources {
             }).toList());
   }
 
-  Future<void> deleteNote(String userId, String noteId, String title,
-      String noteDescription) async {
+  Future<void> deleteNote(String userId, String noteId,) async {
     await _firestore
         .collection('users')
         .doc(userId)
