@@ -1,3 +1,4 @@
+import 'package:caretutors_assignment_task_note_app/configs/app_configs/app_colors.dart';
 import 'package:caretutors_assignment_task_note_app/presentation/providers/auth_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -14,8 +15,9 @@ class HomeScreen extends HookConsumerWidget {
     final notes = ref.watch(getAllNotesProvider(user?.uid ?? ''));
 
     return Scaffold(
+      backgroundColor: AppColors.bgColor,
       appBar: AppBar(
-        title: Text('Notes'),
+        title: Text(user!.displayName.toString()),
         actions: [
           IconButton(
             icon: Icon(Icons.logout),
