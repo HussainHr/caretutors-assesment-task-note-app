@@ -38,9 +38,10 @@ class AuthRepositoryImpl implements AuthRepositories {
         email: email,
         password: password,
       );
-
+      
       await userCredential.user?.updateDisplayName(userName);
-      return userCredential.user;
+      await userCredential.user?.reload();
+      return _firebaseAuth.currentUser;
     } on FirebaseAuthException catch (e) {
       switch (e.code) {
         case 'email-already-in-use':
