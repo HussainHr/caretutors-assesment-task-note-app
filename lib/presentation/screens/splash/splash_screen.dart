@@ -10,7 +10,7 @@
 //
 //   @override
 //   Widget build(BuildContext context, WidgetRef ref) {
-//    
+//
 //     Future.delayed(const Duration(seconds: 6), () {
 //       final isLoggedIn = FirebaseAuth.instance.currentUser != null;
 //       if (isLoggedIn) {
@@ -63,11 +63,12 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      backgroundColor: AppColors.goldColor2,
+      backgroundColor: AppColors.bgColor,
       body: Center(
         child: Text(
-          'Welcome to Note App',
-          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+          'Welcome to CareTutors',
+          style: TextStyle(
+              fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
         ),
       ),
     );
