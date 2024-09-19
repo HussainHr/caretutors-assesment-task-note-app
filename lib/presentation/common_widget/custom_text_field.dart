@@ -6,6 +6,7 @@ class CustomTextFormField extends StatefulWidget {
   final double topHeight;
   final TextEditingController controller;
   final String hintText;
+  final int? maxLInes;
   final String labelText;
   final TextInputType keyboardType;
   final bool obscureText;
@@ -29,7 +30,8 @@ class CustomTextFormField extends StatefulWidget {
     this.focusNode,
     this.onFieldSubmitted,
     this.nextFocusNode,
-    this.textInputAction,
+    this.textInputAction, 
+    this.maxLInes,
   });
 
   @override
@@ -77,6 +79,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
           controller: widget.controller,
           textInputAction: widget.textInputAction,
           focusNode: _focusNode,
+          maxLines: widget.maxLInes,
           cursorColor: AppColors.bgColor,
           keyboardType: widget.keyboardType,
           obscureText: widget.obscureText,
