@@ -19,6 +19,15 @@ class HomeScreen extends HookConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.bgColor,
+        leading: IconButton(
+            onPressed: () {
+              context.go('/profile');
+            },
+            icon: Icon(
+              Icons.person,
+              size: 26,
+              color: Colors.white,
+            )),
         centerTitle: true,
         title: const Text(
           'My Notes',
@@ -31,17 +40,16 @@ class HomeScreen extends HookConsumerWidget {
               Icons.logout,
               color: Colors.white,
             ),
-            onPressed: () {
-              ref.read(logOutProvider.future).then((_) {
-                ref.invalidate(getAllNotesProvider);
-                ref.invalidate(authRepositoryProvider);
-                FirebaseAuth.instance.authStateChanges().listen((User? user) {
-                  if (user == null) {
-                    context.go('/login');
-                  }
-                });
-              }).catchError((error) {
-                showToast(error.toString());
+            onPressed: () async {
+              await ref.read(logOutProvider.future);
+              ref.invalidate(getAllNotesProvider);
+              ref.invalidate(authRepositoryProvider);
+              FirebaseAuth.instance.authStateChanges().listen((User? user) {
+                if (user == null) {
+                  context.go('/login');
+                } else {
+                  throw Exception("Sorry");
+                }
               });
             },
           ),
@@ -92,7 +100,10 @@ class HomeScreen extends HookConsumerWidget {
       floatingActionButton: FloatingActionButton(
         backgroundColor: AppColors.bgColor,
         onPressed: () => context.go('/add-note'),
-        child: const Icon(Icons.add,color: Colors.white,),
+        child: const Icon(
+          Icons.add,
+          color: Colors.white,
+        ),
       ),
     );
   }

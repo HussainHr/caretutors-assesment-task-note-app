@@ -2,6 +2,7 @@ import 'package:caretutors_assignment_task_note_app/presentation/screens/auth_sc
 import 'package:caretutors_assignment_task_note_app/presentation/screens/auth_screen/sign_up_screen.dart';
 import 'package:caretutors_assignment_task_note_app/presentation/screens/home/home_screen.dart';
 import 'package:caretutors_assignment_task_note_app/presentation/screens/note_screen/add_note_screen.dart';
+import 'package:caretutors_assignment_task_note_app/presentation/screens/profile/profile_screen.dart';
 import 'package:caretutors_assignment_task_note_app/presentation/screens/splash/splash_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:go_router/go_router.dart';
@@ -30,6 +31,10 @@ final router = GoRouter(
     GoRoute(
       path: '/home',
       builder: (context, state) => const HomeScreen(),
+    ),
+    GoRoute(
+      path: '/profile',
+      builder: (context, state) => const ProfileScreen(),
     ),
     GoRoute(
       path: '/add-note',
